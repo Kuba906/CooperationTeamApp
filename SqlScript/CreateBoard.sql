@@ -1,0 +1,30 @@
+USE [teamcooperationdb]
+GO
+
+/****** Object:  Table [dbo].[Board]    Script Date: 09.01.2023 03:01:17 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Board](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[Owner] [varchar](50) NULL,
+	[Contributor] [varchar](50) NULL,
+ CONSTRAINT [PK_Board] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Board]  WITH CHECK ADD  CONSTRAINT [FK_Board_User] FOREIGN KEY([Id])
+REFERENCES [dbo].[User] ([Id])
+GO
+
+ALTER TABLE [dbo].[Board] CHECK CONSTRAINT [FK_Board_User]
+GO
+
+
